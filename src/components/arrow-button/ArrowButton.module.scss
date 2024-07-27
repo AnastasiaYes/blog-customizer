@@ -10,15 +10,7 @@
 	height: 100px;
 	background-color: #000000;
 	border-right: 1px;
-	transition: transform 0.5s ease, background-color 0.2s ease;
-}
-
-.container:hover {
-	background-color: #ffc802;
-}
-
-.container:active {
-	background-color: #787878;
+	transition: transform 0.5s ease;
 }
 
 .container_open {

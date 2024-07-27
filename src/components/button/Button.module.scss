@@ -10,24 +10,10 @@
 	cursor: pointer;
 }
 
-.button[type='reset'] {
-	color: #000000;
-	background-color: #ffffff;
+.button:active {
+	background: var(--gold, #ffc802);
 }
 
-.button[type='reset']:hover {
-	background-color: #000000;
-}
-
-.button[type='reset']:hover div {
-	color: #ffffff;
-}
-
-.button[type='submit'] {
-	color: #000000;
-	background-color: #ffc802;
-}
-
-.button[type='submit']:hover {
-	background-color: #ffedab;
+.button:hover {
+	background: var(--gold, #ffc802);
 }
