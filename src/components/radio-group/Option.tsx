@@ -8,7 +8,7 @@ import styles from './RadioGroup.module.scss';
 type OptionProps = {
 	value: OptionType['value'];
 	title: OptionType['title'];
-	selected: OptionType;
+	selected: OptionType | null;
 	groupName: string;
 	onChange?: (option: OptionType) => void;
 	option: OptionType;
@@ -24,7 +24,7 @@ export const Option = (props: OptionProps) => {
 	useEnterSubmit({ onChange, option });
 
 	const inputId = `${groupName}_radio_item_with_value__${value}`;
-	const isChecked = value === selected.title;
+	const isChecked = selected ? value === selected.value : false;
 
 	return (
 		<div
