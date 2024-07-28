@@ -30,34 +30,32 @@ export const ArticleParamsForm = ({
 	const navContainerRef = useRef<HTMLDivElement>(null);
 	const [asideIsOpen, setAsideIsOpen] = useState<boolean>(false);
 
-	const [fontOptions] = useState<OptionType[]>(fontFamilyOptions);
 	const [selectedFont, setSelectedFont] = useState<OptionType>(
 		articleState.fontFamilyOption
 	);
 
-	const [fontSizeChoiceOptions] = useState<OptionType[]>(fontSizeOptions);
 	const [selectedFontSize, setSelectedFontSize] = useState<OptionType>(
 		articleState.fontSizeOption
 	);
 
-	const [fontColorOptions] = useState<OptionType[]>(fontColors);
 	const [selectedFontColor, setSelectedFontColor] = useState<OptionType>(
 		articleState.fontColor
 	);
 
-	const [backgroundColorOptions] = useState<OptionType[]>(backgroundColors);
 	const [selectedBackgroundColor, setSelectedBackgroundColor] =
 		useState<OptionType>(articleState.backgroundColor);
 
-	const [containerWidthOptions] = useState<OptionType[]>(contentWidthArr);
 	const [selectedContainerWidth, setSelectedContainerWidth] =
 		useState<OptionType>(articleState.contentWidth);
 
 	useEffect(() => {
-		document.addEventListener('click', handleClickOutside, { capture: true });
+		if (!asideIsOpen) {
+			return;
+		}
 
+		document.addEventListener('click', handleClickOutside, { capture: true });
 		return () => {
-			document.removeEventListener('click', handleClickOutside);
+			document.removeEventListener('click', handleClickOutside, true);
 		};
 	}, [asideIsOpen]);
 
@@ -128,17 +126,17 @@ export const ArticleParamsForm = ({
 						<Select
 							selected={selectedFont}
 							title={'ширфт'}
-							onChange={(el) => setSelectedFont(el)}
-							options={fontOptions}
+							onChange={setSelectedFont}
+							options={fontFamilyOptions}
 						/>
 					</div>
 					<div className={styles.containerInput}>
 						<RadioGroup
-							options={fontSizeChoiceOptions}
+							options={fontSizeOptions}
 							name={'Размер шрифта'}
 							title={'Размер'}
 							selected={selectedFontSize}
-							onChange={(el) => setSelectedFontSize(el)}
+							onChange={setSelectedFontSize}
 						/>
 					</div>
 
@@ -146,8 +144,8 @@ export const ArticleParamsForm = ({
 						<Select
 							selected={selectedFontColor}
 							title={'Цвет шрифта'}
-							onChange={(el) => setSelectedFontColor(el)}
-							options={fontColorOptions}
+							onChange={setSelectedFontColor}
+							options={fontColors}
 						/>
 					</div>
 
@@ -159,8 +157,8 @@ export const ArticleParamsForm = ({
 						<Select
 							selected={selectedBackgroundColor}
 							title={'Цвет фона'}
-							onChange={(el) => setSelectedBackgroundColor(el)}
-							options={backgroundColorOptions}
+							onChange={setSelectedBackgroundColor}
+							options={backgroundColors}
 						/>
 					</div>
 
@@ -168,8 +166,8 @@ export const ArticleParamsForm = ({
 						<Select
 							selected={selectedContainerWidth}
 							title={'Ширина контента'}
-							onChange={(el) => setSelectedContainerWidth(el)}
-							options={containerWidthOptions}
+							onChange={setSelectedContainerWidth}
+							options={contentWidthArr}
 						/>
 					</div>
 
